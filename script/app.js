@@ -114,17 +114,14 @@ async function handleEditBlog(event) {
     const blogId = event.target.getAttribute('data-id');
     // Redirect to the addPost page with the blogId in the URL or localStorage for editing
     localStorage.setItem('editingBlogId', blogId);
-    window.location.href = 'addPost.html'; // Assuming this page will handle the editing logic
-}
+    window.location.href = 'addPost.html';}
 
-// Function to handle blog deletion
 async function handleDeleteBlog(event) {
     const blogId = event.target.getAttribute('data-id');
     
     try {
         await deleteDoc(doc(db, "blogs", blogId));
         alertify.success('Blog deleted successfully!');
-        // Reload the blog list after deletion
         check_onAuthStateChanged();
     } catch (error) {
         console.error("Error deleting blog: ", error);

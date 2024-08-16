@@ -4,8 +4,6 @@ import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/fireba
 import { collection , addDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const from_dt = document.querySelector('#from_dt')
-const Frist_Name = document.querySelector('#Frist_Name')
-const Last_Name = document.querySelector('#Last_Name')
 const Email_dt = document.querySelector('#Email_dt')
 const password_dt = document.querySelector('#password_dt')
 const profile_pic = document.querySelector('#profile_pic')
@@ -18,11 +16,6 @@ const registerBtn = document.querySelector('#register-btn');
 const registerText = document.querySelector('#register-text');
 const loadingSpinner = document.querySelector('#loading-spinner');
 
-// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// const passwordRegex = /^.{6,}$/;
-
-// const nameRegex = /^.{3,}$/;
 
 
 from_dt.addEventListener('submit', async (e) => {
@@ -32,35 +25,6 @@ from_dt.addEventListener('submit', async (e) => {
     registerBtn.disabled = true;
 
     let urlCreated = null;
-
-    // if (!nameRegex.test(Frist_Name.value)) {
-    //     console.error('First name must be at least 3 characters long');
-    //     alertify.error('First name must be at least 3 characters long');
-
-    //     resetButton()
-    //     return;
-    // }
-    // if (!nameRegex.test(Last_Name.value)) {
-    //     console.error('Last name must be at least 3 characters long');
-    //     alertify.error('Last name must be at least 3 characters long');
-
-    //     resetButton()
-    //     return;
-    // }
-    // if (!emailRegex.test(Email_dt.value)) {
-    //     console.error('Invalid email format');
-    //     alertify.error('Invalid email format');
-
-    //     resetButton()
-    //     return;
-    // }
-    // if (!passwordRegex.test(password_dt.value)) {
-    //     console.error('Password must be at least 6 characters long');
-    //     alertify.error('Password must be at least 6 characters long');
-
-    //     resetButton()
-    //     return;
-    // }
 
     if (profile_pic.files.length > 0) {
         const file = profile_pic.files[0];
@@ -83,9 +47,7 @@ from_dt.addEventListener('submit', async (e) => {
         console.log(user);
 
         const docRef = await addDoc(collection(db, "users"), {
-            FristName: Frist_Name.value,
-            LastName: Last_Name.value,
-            email: Email_dt.value,
+         email: Email_dt.value,
             imgUrl: urlCreated,
             uid: user.uid
         });
